@@ -16,25 +16,25 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Label Content="RawData" HorizontalAlignment="Left" Margin="170,10,0,0" VerticalAlignment="Top"/>
-        <TextBox Name ="LeftSeg"  HorizontalAlignment="Left" Margin="35,72,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name ="RightSeg" HorizontalAlignment="Left" Margin="216,72,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name ="RawNumber"  HorizontalAlignment="Left" Margin="35,123,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="LeftSeg"  HorizontalAlignment="Left" Margin="35,72,0,0" TextWrapping="Wrap" Text="{Binding Path=leftseg,UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="RightSeg" HorizontalAlignment="Left" Margin="216,72,0,0" TextWrapping="Wrap" Text="{Binding Path=rightseg,UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="RawNumber"  HorizontalAlignment="Left" Margin="35,123,0,0" TextWrapping="Wrap" Text="{Binding Path=n_rd,UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120"/>
         <RadioButton Checked="UniformGrid_Checked" Name="UniformGrid" IsChecked ="True" Content="Равномерная сетка" HorizontalAlignment="Left" Margin="36,172,0,0" VerticalAlignment="Top"/>
         <RadioButton Checked="NonUniformGrid_Checked" Name="NonUniformGrid"  Content="Неравномерная сетка" HorizontalAlignment="Left" Margin="216,172,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name ="FuncBox" SelectionChanged ="FuncBox_SelectionChanged"  HorizontalAlignment="Left" Margin="216,121,0,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding F}"/>
+        <ComboBox Name ="FuncBox"  HorizontalAlignment="Left" Margin="216,121,0,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding Path=FunctypeEnum}"/>
         <Label Content="Левая граница" HorizontalAlignment="Left" Margin="53,41,0,0" VerticalAlignment="Top"/>
         <Label Content="Правая граница" HorizontalAlignment="Left" Margin="227,41,0,0" VerticalAlignment="Top"/>
         <Label Content="Число узлов сплайна" HorizontalAlignment="Left" Margin="32,97,0,0" VerticalAlignment="Top"/>
         <Label Content="Функция" HorizontalAlignment="Left" Margin="234,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.323,0.526"/>
         <Label Content="SplineData" HorizontalAlignment="Left" Margin="160,217,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <TextBox Name="LeftDer" HorizontalAlignment="Left" Margin="36,49,0,0" Grid.Row="1" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name ="RightDer"  HorizontalAlignment="Left" Margin="234,49,0,0" Grid.Row="1" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="SplineNumber" HorizontalAlignment="Left" Margin="147,109,0,0" Grid.Row="1" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="LeftDer" HorizontalAlignment="Left" Margin="36,49,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=left_der,UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="RightDer"  HorizontalAlignment="Left" Margin="234,49,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=right_der,UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="SplineNumber" HorizontalAlignment="Left" Margin="147,109,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=n_sd,UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120"/>
         <Label Content="Первая производная слева" HorizontalAlignment="Left" Margin="16,23,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Первая производная справа" HorizontalAlignment="Left" Margin="223,23,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Число узлов сетки" HorizontalAlignment="Left" Margin="152,83,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <ListBox Name ="RawDataList" Grid.Column="1" d:ItemsSource="{Binding}" Margin="0,31,236,0"/>
-        <ListBox Name="SplineDataList" SelectionChanged="SplineDataList_SelectionChanged" Grid.Column="1" d:ItemsSource="{Binding}" Margin="169,31,0,0">
+        <ListBox Name="SplineDataList"  Grid.Column="1" d:ItemsSource="{Binding}" Margin="169,31,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -50,7 +50,7 @@
         </ListBox>
         <Label Grid.Column="1" Content="RawData" HorizontalAlignment="Left" Margin="57,5,0,0" VerticalAlignment="Top"/>
         <Label Grid.Column="1" Content="SplineData" HorizontalAlignment="Left" Margin="271,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.455,1.141"/>
-        <TextBlock Name="SplineElemBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,33,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Choose Spline Data Element" VerticalAlignment="Top" Width="390"/>
+        <TextBlock Name="SplineElemBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,33,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding ElementName=SplineDataList, Path = SelectedItem}" VerticalAlignment="Top" Width="390"/>
         <TextBlock Name="IntegralBlock"  Grid.Column="1" HorizontalAlignment="Left" Margin="169,83,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
         <Label Grid.Column="1" Content="SplineData element" HorizontalAlignment="Left" Margin="114,217,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
         <Label Grid.Column="1" Content="Integral" HorizontalAlignment="Left" Margin="168,58,0,0" VerticalAlignment="Top" Grid.Row="1"/>

@@ -22,15 +22,17 @@ namespace Wpf1
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    { FRawEnum F { get; set; }
+    {
         bool type1 = true;
-        SplineDataItem elem { get; set; }
+        
+        ViewData vd = new ViewData(1, 5, 5, true, FRawEnum.linear, 1, 1, 5);
+
         public MainWindow()
         {  
             InitializeComponent();
             FuncBox.ItemsSource = Enum.GetValues(typeof(FRawEnum));
             FuncBox.SelectedIndex = 0;
-            F =(FRawEnum)FuncBox.SelectedItem;
+            this.DataContext = vd;
             
         }
 
@@ -49,23 +51,7 @@ namespace Wpf1
             {
                 
                     string filename = dialog.FileName;
-                try
-                {
-                    int n_rd = Convert.ToInt32(RawNumber.Text);
-                    double[] seg = new double[2];
-                    seg[0] = Convert.ToDouble(LeftSeg.Text);
-                    seg[1] = Convert.ToDouble(RightSeg.Text);
-                    int n_sd = Convert.ToInt32(SplineNumber.Text);
-                    double left_der = Convert.ToDouble(LeftDer.Text);
-                    double right_der = Convert.ToDouble(RightDer.Text);
-                    FRaw functype = F switch
-                    {
-                        FRawEnum.linear => ViewData.Linear,
-                        FRawEnum.cube => ViewData.Cube,
-                        FRawEnum.random => ViewData.Random,
-                    };
-
-                    ViewData vd = new ViewData(seg, n_rd, type1, functype, left_der, right_der, n_sd);
+                try { 
                     vd.CreateRawData();
                     vd.Save(filename);
                 }
@@ -89,11 +75,6 @@ namespace Wpf1
                 string filename = dialog.FileName;
                 try
                 {
-                    int n_sd = Convert.ToInt32(SplineNumber.Text);
-                    double left_der = Convert.ToDouble(LeftDer.Text);
-                    double right_der = Convert.ToDouble(RightDer.Text);
-               
-                    ViewData vd = new ViewData(left_der, right_der, n_sd);
                     vd.rd = vd.Load(filename);
                     vd.CreateSplineData();
                     vd.ComputeSpline();
@@ -116,22 +97,6 @@ namespace Wpf1
         {
             try
             {
-                int n_rd = Convert.ToInt32(RawNumber.Text);
-                double[] seg = new double[2];
-                seg[0] = Convert.ToDouble(LeftSeg.Text);
-                seg[1] = Convert.ToDouble(RightSeg.Text);
-                int n_sd = Convert.ToInt32(SplineNumber.Text);
-                double left_der = Convert.ToDouble(LeftDer.Text);
-                double right_der = Convert.ToDouble(RightDer.Text);
-                
-                FRaw functype = F switch
-                {
-                    FRawEnum.linear => ViewData.Linear,
-                    FRawEnum.cube => ViewData.Cube,
-                    FRawEnum.random => ViewData.Random,
-                };
-
-                ViewData vd = new ViewData(seg, n_rd, type1, functype, left_der, right_der, n_sd);
                 vd.CreateRawData();
                 string[] rawdatalist = new string[vd.rd.grid.Length];
                 for (int i = 0; i < vd.rd.grid.Length; i++)
@@ -143,8 +108,6 @@ namespace Wpf1
                 vd.CreateSplineData();
                 vd.ComputeSpline();
                 SplineDataList.ItemsSource = vd.sd.list;
-                
-
 
                 IntegralBlock.Text = (vd.sd.integ.ToString("F3"));
                 
@@ -155,28 +118,15 @@ namespace Wpf1
         private void NonUniformGrid_Checked(object sender, RoutedEventArgs e)
         {
             type1 = false;
+            vd.type = type1;
         }
 
         private void UniformGrid_Checked(object sender, RoutedEventArgs e)
         {
             type1 = true;
+            vd.type = type1;
         }
 
-        private void FuncBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (FuncBox.SelectedItem != null)
-            {
-                F = (FRawEnum)FuncBox.SelectedItem;
-            }
-        }
-
-        private void SplineDataList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (SplineDataList.SelectedItem != null)
-            {
-                elem = (SplineDataItem)SplineDataList.SelectedItem;
-                SplineElemBlock.Text = elem.ToLongString("F3");
-            }
-        }
+       
     }
 }
