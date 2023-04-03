@@ -3,9 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Wpf1"
+        xmlns:local="clr-namespace:Wpf1" 
+        xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="1200">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:MainWindow.ControlsCommand}"
+                        Executed="ControlsCommandHandler"
+                        CanExecute="CanControlsCommandHandler" />
+        <CommandBinding Command="{x:Static local:MainWindow.FileCommand}"
+                        Executed="FileCommandHandler"
+                        CanExecute="CanFileCommandHandler" />
+        <CommandBinding Command="ApplicationCommands.Save"
+                        Executed="SaveCommandHandler"
+                        CanExecute="CanSaveCommandHandler" />
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -14,11 +26,16 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+        
         <Label Content="RawData" HorizontalAlignment="Left" Margin="170,10,0,0" VerticalAlignment="Top"/>
-        <TextBox Name ="LeftSeg"  HorizontalAlignment="Left" Margin="35,72,0,0" TextWrapping="Wrap" Text="{Binding Path=leftseg,UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name ="RightSeg" HorizontalAlignment="Left" Margin="216,72,0,0" TextWrapping="Wrap" Text="{Binding Path=rightseg,UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name ="RawNumber"  HorizontalAlignment="Left" Margin="35,123,0,0" TextWrapping="Wrap" Text="{Binding Path=n_rd,UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="LeftSeg"  HorizontalAlignment="Left" Margin="35,72,0,0" TextWrapping="Wrap" Validation.Error="Validation_Error"
+                Text="{Binding Path=leftseg,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged,NotifyOnValidationError=true }" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="RightSeg" HorizontalAlignment="Left" Margin="216,72,0,0" TextWrapping="Wrap" Validation.Error="Validation_Error"
+                 Text="{Binding Path=rightseg,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged,NotifyOnValidationError=true }" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="RawNumber"  HorizontalAlignment="Left" Margin="35,123,0,0" TextWrapping="Wrap" Validation.Error="Validation_Error"
+                 Text="{Binding Path=n_rd,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged,NotifyOnValidationError=true }" VerticalAlignment="Top" Width="120"/>
         <RadioButton Checked="UniformGrid_Checked" Name="UniformGrid" IsChecked ="True" Content="Равномерная сетка" HorizontalAlignment="Left" Margin="36,172,0,0" VerticalAlignment="Top"/>
         <RadioButton Checked="NonUniformGrid_Checked" Name="NonUniformGrid"  Content="Неравномерная сетка" HorizontalAlignment="Left" Margin="216,172,0,0" VerticalAlignment="Top"/>
         <ComboBox Name ="FuncBox"  HorizontalAlignment="Left" Margin="216,121,0,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding Path=FunctypeEnum}"/>
@@ -29,7 +46,8 @@
         <Label Content="SplineData" HorizontalAlignment="Left" Margin="160,217,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
         <TextBox Name="LeftDer" HorizontalAlignment="Left" Margin="36,49,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=left_der,UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120"/>
         <TextBox Name ="RightDer"  HorizontalAlignment="Left" Margin="234,49,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=right_der,UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="SplineNumber" HorizontalAlignment="Left" Margin="147,109,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=n_sd,UpdateSourceTrigger=PropertyChanged }" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="SplineNumber" HorizontalAlignment="Left" Margin="147,109,0,0" Grid.Row="1" TextWrapping="Wrap" Validation.Error="Validation_Error"
+                 Text="{Binding Path=n_sd,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="120"/>
         <Label Content="Первая производная слева" HorizontalAlignment="Left" Margin="16,23,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Первая производная справа" HorizontalAlignment="Left" Margin="223,23,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Число узлов сетки" HorizontalAlignment="Left" Margin="152,83,0,0" Grid.Row="1" VerticalAlignment="Top"/>
@@ -56,17 +74,19 @@
         <Label Grid.Column="1" Content="Integral" HorizontalAlignment="Left" Margin="168,58,0,0" VerticalAlignment="Top" Grid.Row="1"/>
         <Menu Grid.Column="1" Grid.Row="1" Margin="0,109,0,64">
             <MenuItem Header="File">
-                <MenuItem Header="Save" Click="SaveClick"/>
+                <MenuItem Header="Save" Command="ApplicationCommands.Save" />
             </MenuItem>
             <MenuItem Header="Execute">
-                <MenuItem Header="RawData from Controls" Click=" ControlsClick"/>
+                <MenuItem Header="RawData from Controls"  Command="{x:Static local:MainWindow.ControlsCommand}"/>
                 <MenuItem Header="RawData from File" Click=" FileClick"/>
             </MenuItem>
         </Menu>
-        <Button Grid.Column="1" Content="Save" HorizontalAlignment="Left" Margin="19,172,0,0" Grid.Row="1" VerticalAlignment="Top" Click="SaveClick"/>
+        <Button Grid.Column="1" Content="Save" Command="ApplicationCommands.Save" HorizontalAlignment="Left" Margin="19,172,0,0" Grid.Row="1" VerticalAlignment="Top" />
         <Button Grid.Column="1" Content="RawData from File" HorizontalAlignment="Left" Margin="114,172,0,0" Grid.Row="1" VerticalAlignment="Top" Click="FileClick"/>
-        <Button Grid.Column="1" Content="RawData from Controls" HorizontalAlignment="Left" Margin="251,172,0,0" Grid.Row="1" VerticalAlignment="Top" Click="ControlsClick"/>
-
-
-    </Grid>
+        <Button Grid.Column="1" Content="RawData from Controls" Command="{x:Static local:MainWindow.ControlsCommand}" HorizontalAlignment="Left" Margin="251,172,0,0" Grid.Row="1" VerticalAlignment="Top" />
+        <Grid Grid.Column="2"  Name ="OxyPlot" Grid.RowSpan="2">
+            <oxy:PlotView Model="{Binding plotModel}"/>
+        </Grid>
+ 
+        </Grid>
 </Window>

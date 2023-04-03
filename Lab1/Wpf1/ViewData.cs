@@ -9,8 +9,29 @@ using System.Windows;
 
 namespace Wpf1
 {
-    public class ViewData 
+    public class ViewData : IDataErrorInfo
     {
+        public string Error { get; }
+        public string this[string property]
+        {
+            get { string msg = null;
+                switch(property)
+                { case "n_rd": if (n_rd < 2) msg = "Raw Data nodes' number must be greater than 1.";
+                        break;
+            
+                case "n_sd": if (n_sd <= 2) msg = "Spline Data nodes' number must be greater than 2.";
+                    break;
+                case "leftseg": if (leftseg >= rightseg) msg = "The right end of the segment should be greater than the left one.";
+                    break;
+                case "rightseg": if (leftseg >= rightseg) msg = "The right end of the segment should be greater than the left one.";
+                    break;
+    
+
+                }
+                return msg; }
+        }
+
+
         public RawData rd;
         public SplineData sd;
         public double leftseg { get; set; }
@@ -97,6 +118,7 @@ namespace Wpf1
             try
             {  
                RawData.Load(filename,out rd);
+               
                 return rd;
             }
             catch (Exception ex) { MessageBox.Show(Convert.ToString(ex)); return null; }
