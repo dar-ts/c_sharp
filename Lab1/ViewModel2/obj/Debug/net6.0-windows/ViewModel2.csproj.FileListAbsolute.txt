@@ -1,0 +1,15 @@
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\bin\Debug\net6.0-windows\ViewModel2.deps.json
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\bin\Debug\net6.0-windows\ViewModel2.dll
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\bin\Debug\net6.0-windows\ViewModel2.pdb
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\bin\Debug\net6.0-windows\ClassLibrary1.dll
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\bin\Debug\net6.0-windows\ClassLibrary1.pdb
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\obj\Debug\net6.0-windows\ViewModel2.csproj.AssemblyReference.cache
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\obj\Debug\net6.0-windows\ViewModel2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\obj\Debug\net6.0-windows\ViewModel2.AssemblyInfoInputs.cache
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\obj\Debug\net6.0-windows\ViewModel2.AssemblyInfo.cs
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\obj\Debug\net6.0-windows\ViewModel2.csproj.CoreCompileInputs.cache
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\obj\Debug\net6.0-windows\ViewModel2.csproj.CopyComplete
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\obj\Debug\net6.0-windows\ViewModel2.dll
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\obj\Debug\net6.0-windows\refint\ViewModel2.dll
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\obj\Debug\net6.0-windows\ViewModel2.pdb
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\ViewModel2\obj\Debug\net6.0-windows\ref\ViewModel2.dll

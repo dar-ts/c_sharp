@@ -9,11 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="OxyPlotModel.cs" />
+    <Compile Remove="ViewData.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="OxyPlot.Wpf" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj" />
+    <ProjectReference Include="..\ViewModel2\ViewModel2.csproj" />
   </ItemGroup>
 
 </Project>

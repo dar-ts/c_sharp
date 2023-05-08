@@ -8,8 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "Wpf1/1.0.0": {
         "dependencies": {
-          "ClassLibrary1": "1.0.0",
-          "OxyPlot.Wpf": "2.1.2"
+          "OxyPlot.Wpf": "2.1.2",
+          "ViewModel2": "1.0.0"
         },
         "runtime": {
           "Wpf1.dll": {}
@@ -50,6 +50,16 @@
         "runtime": {
           "ClassLibrary1.dll": {}
         }
+      },
+      "ViewModel2/1.0.0": {
+        "dependencies": {
+          "ClassLibrary1": "1.0.0",
+          "OxyPlot.Core": "2.1.2",
+          "OxyPlot.Wpf": "2.1.2"
+        },
+        "runtime": {
+          "ViewModel2.dll": {}
+        }
       }
     }
   },
@@ -81,6 +91,11 @@
       "hashPath": "oxyplot.wpf.shared.2.1.2.nupkg.sha512"
     },
     "ClassLibrary1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ViewModel2/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

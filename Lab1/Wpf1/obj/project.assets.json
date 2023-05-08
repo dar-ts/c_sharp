@@ -63,6 +63,21 @@
         "runtime": {
           "bin/placeholder/ClassLibrary1.dll": {}
         }
+      },
+      "ViewModel2/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "ClassLibrary1": "1.0.0",
+          "OxyPlot.Core": "2.1.2",
+          "OxyPlot.Wpf": "2.1.2"
+        },
+        "compile": {
+          "bin/placeholder/ViewModel2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ViewModel2.dll": {}
+        }
       }
     }
   },
@@ -129,12 +144,17 @@
       "type": "project",
       "path": "../ClassLibrary1/ClassLibrary1.csproj",
       "msbuildProject": "../ClassLibrary1/ClassLibrary1.csproj"
+    },
+    "ViewModel2/1.0.0": {
+      "type": "project",
+      "path": "../ViewModel2/ViewModel2.csproj",
+      "msbuildProject": "../ViewModel2/ViewModel2.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
-      "ClassLibrary1 >= 1.0.0",
-      "OxyPlot.Wpf >= 2.1.2"
+      "OxyPlot.Wpf >= 2.1.2",
+      "ViewModel2 >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -164,8 +184,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\luc\\Desktop\\Kisa\\C#\\Lab11\\Lab1\\ClassLibrary1\\ClassLibrary1.csproj": {
-              "projectPath": "C:\\Users\\luc\\Desktop\\Kisa\\C#\\Lab11\\Lab1\\ClassLibrary1\\ClassLibrary1.csproj"
+            "C:\\Users\\luc\\Desktop\\Kisa\\C#\\Lab11\\Lab1\\ViewModel2\\ViewModel2.csproj": {
+              "projectPath": "C:\\Users\\luc\\Desktop\\Kisa\\C#\\Lab11\\Lab1\\ViewModel2\\ViewModel2.csproj"
             }
           }
         }

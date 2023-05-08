@@ -25,3 +25,5 @@ C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\Wpf1\obj\Debug\net6.0-windows\ref\Wpf1.d
 C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\Wpf1\bin\Debug\net6.0-windows\OxyPlot.dll
 C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\Wpf1\bin\Debug\net6.0-windows\OxyPlot.Wpf.dll
 C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\Wpf1\bin\Debug\net6.0-windows\OxyPlot.Wpf.Shared.dll
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\Wpf1\bin\Debug\net6.0-windows\ViewModel2.dll
+C:\Users\luc\Desktop\Kisa\C#\Lab11\Lab1\Wpf1\bin\Debug\net6.0-windows\ViewModel2.pdb

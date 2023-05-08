@@ -38,7 +38,8 @@ namespace ClassLibrary1
                     else if (i == (n-1))
                         x = seg[1];
                     else
-                        x = Convert.ToDouble(x1.Next(Convert.ToInt16(grid[i - 1] * 100), Convert.ToInt16(seg[1] * 100)) / 100.0);
+                       
+                        x = grid[i-1] + ((seg[1] - seg[0]) / (n - 1)) * x1.NextDouble();
                 }
                 grid[i] = x;
                 func_grid[i] = functype(x);
@@ -54,8 +55,9 @@ namespace ClassLibrary1
         public static double Cube(double x) { return 3 * x*x*x+ x*x; }
         public static double Random(double x) {
             Random x1 = new Random();
-            double rnd = Convert.ToDouble(x1.Next(-100, 100) / 10.0);
-                return rnd; }
+      
+            double rnd = x *x1.NextDouble();
+            return rnd; }
 
         public bool Save(string filename)
         {
